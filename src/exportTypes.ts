@@ -29,9 +29,11 @@ export interface DropPlaceholderOptions {
 
 export interface DragStartParams { isSource: boolean; payload: any; willAcceptDrop: boolean }
 export interface DragEndParams { isSource: boolean; payload: any; willAcceptDrop: boolean }
+export interface DragEnterLeaveParams { payload: any; }
 
 export type DragStartCallback = Callback<DragStartParams>;
 export type DragEndCallback = Callback<DragEndParams>;
+export type OnDragEnterLeaveCallback = Callback<DragEnterLeaveParams>;
 export type OnDropCallback = Callback<DropResult>;
 export type OnDropReadyCallback = Callback<DropResult>;
 
@@ -53,8 +55,8 @@ export interface ContainerOptions {
 	getChildPayload?: (index: number) => any;
 	shouldAnimateDrop?: (sourceContainerOptions: ContainerOptions, payload: any) => boolean;
 	shouldAcceptDrop?: (sourceContainerOptions: ContainerOptions, payload: any) => boolean;
-	onDragEnter?: () => void;
-	onDragLeave?: () => void;
+	onDragEnter?: OnDragEnterLeaveCallback;
+	onDragLeave?: OnDragEnterLeaveCallback;
 	onDropReady?: OnDropReadyCallback;
 	removeOnDropOut?: boolean;
 	getGhostParent?: () => HTMLElement;

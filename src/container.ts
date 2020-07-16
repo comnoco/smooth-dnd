@@ -565,14 +565,14 @@ function handleFirstInsertShadowAdjustment() {
 function fireDragEnterLeaveEvents({ getOptions }: ContainerProps) {
   let wasDragIn = false;
   const options = getOptions();
-  return ({ dragResult: { pos } }: DragInfo) => {
+  return ({ dragResult: { pos }, draggableInfo: { payload } }: DragInfo) => {
     const isDragIn = !!pos;
     if (isDragIn !== wasDragIn) {
       wasDragIn = isDragIn;
       if (isDragIn) {
-        options.onDragEnter && options.onDragEnter();
+        options.onDragEnter && options.onDragEnter({ payload });
       } else {
-        options.onDragLeave && options.onDragLeave();
+        options.onDragLeave && options.onDragLeave({ payload });
       }
     }
 
